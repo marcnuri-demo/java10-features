@@ -1,0 +1,46 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 10
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+	testCompile group: 'junit', name: 'junit', version: '4.12'
+
+}
+
+mainClassName = "com.marcnuri.demo.javaten.Main"
+
+jar {
+	exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.MF'
+	manifest {
+		attributes 'Main-Class': mainClassName,
+				'Class-Path': configurations.runtime.files.collect { "$it.name" }.join(' ')
+	}
+}
+
+
+/**
+ * Creates a jar file packaged with all the dependencies
+ */
+task fatJar(type: Jar) {
+	manifest {
+		attributes 'Main-Class': mainClassName
+	}
+	baseName = project.name + '-all'
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+}
