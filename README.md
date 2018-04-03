@@ -1,12 +1,12 @@
-# Spring Data MongoDB: Custom repository implementation
+# Java 10: New features and enhancements
 
-[![Build Status](https://travis-ci.org/marcnuri-demo/spring-mongo-custom-repository.svg?branch=master)](https://travis-ci.org/marcnuri-demo/spring-mongo-custom-repository)
+Source code for the post published in
+https://blog.marcnuri.com/java-10-releases/
 
-Source code for the tutorial published in
-https://blog.marcnuri.com/spring-data-mongodb-custom-repository-implementation/
-
-The tutorial illustrates how to define custom spring-data repository methods and their implementation for
-a book repository in MongoDB and how to write unit tests to check this custom implementation.
+Java 10 was released the past 20th of March following the new tight six-month release schedule.
+This version comes just after the Java 9 release on September 2017
+and marks this past release obsolete. This post shows some of the new features and enhancements
+available in Java 10.
 
 Please feel free to leave any comments or suggestions in the
-[blog page](https://blog.marcnuri.com/spring-data-mongodb-custom-repository-implementation/).
+[blog page](https://blog.marcnuri.com/java-10-releases/).
