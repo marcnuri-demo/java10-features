@@ -9,9 +9,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -35,4 +38,70 @@ public class MainTest {
 		assertTrue(List.class.isInstance(shouldBeList));
 	}
 
+	@Test
+	public void localVariableTypeInference_map_shouldInferOk() {
+		//When
+		var shouldBeMap = new HashMap<Integer, String>();
+
+		// Then
+		assertTrue(Map.class.isInstance(shouldBeMap));
+	}
+
+	@Test()
+	public void optionalOrElseThrow_string_shouldReturnOk() {
+		// Given
+		final Optional<String> optional = Optional.ofNullable("Optional improvement in Java 10");
+
+		// When
+		final String string = optional.orElseThrow();
+
+		// Then
+		assertNotNull(string);
+	}
+
+	@Test(expected = NoSuchElementException.class)
+	public void optionalOrElseThrow_string_shouldThrowException() {
+		// Given
+		final Optional<String> optional = Optional.ofNullable(null);
+
+		// When
+		final String string = optional.orElseThrow();
+
+		// Then
+		// Exception is thrown
+	}
+
+	@Test(expected = UnsupportedOperationException.class)
+	public void toUnmodifiableSet_set_shouldThrowException() {
+		// Given
+		final Set<Integer> unmodifiableSet = Stream.of(1, 2, 3).collect(Collectors.toUnmodifiableSet());
+
+		// When
+		unmodifiableSet.add(4);
+
+		// Exception is thrown
+	}
+
+	@Test(expected = UnsupportedOperationException.class)
+	public void toUnmodifiableList_list_shouldThrowException() {
+		// Given
+		final List<Integer> unmodifiableList = Stream.of(1, 2, 3).collect(Collectors.toUnmodifiableList());
+
+		// When
+		unmodifiableList.add(4);
+
+		// Exception is thrown
+	}
+
+	@Test(expected = UnsupportedOperationException.class)
+	public void toUnmodifiableMap_map_shouldThrowException() {
+		// Given
+		final Map<Integer, Integer> unmodifiableMap = Stream.of(1, 2, 3)
+				.collect(Collectors.toUnmodifiableMap(Function.identity(), Function.identity()));
+
+		// When
+		unmodifiableMap.put(4, 4);
+
+		// Exception is thrown
+	}
 }
