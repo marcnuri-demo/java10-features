@@ -1,5 +1,7 @@
 # Java 10: New features and enhancements
 
+[![Build Status](https://travis-ci.org/marcnuri-demo/java10-features.svg?branch=master)](https://travis-ci.org/marcnuri-demo/java10-features)
+
 Source code for the post published in
 https://blog.marcnuri.com/java-10-releases/
 
